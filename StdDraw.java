@@ -1910,8 +1910,8 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     	drawPolynom(p, x1, eps, x0);  	       //drawing the polynom: 0.2x^4-1.5x^3+3.0x^2-x-5.
     	
     	drawExtremePoints(p, x1, eps, x0);
-    	DecimalFormat df = new DecimalFormat();    	
-    	System.out.println(df.format(calculateArea(p, x0, eps, x1)));     //calculate the area of the function below axis-x.
+    	DecimalFormat df = new DecimalFormat();
+    	df.format(calculateArea(p, x0, eps, x1));     //calculate the area of the function below axis-x.
     }
     
     /**
@@ -2005,6 +2005,12 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 			start=end;        
 			end+=eps;
 		}
+		Font font1 = new Font("Arial", Font.BOLD, 25);
+		StdDraw.setFont(font1);
+        StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+    	DecimalFormat df = new DecimalFormat();
+    	df.setMaximumFractionDigits(3);
+    	StdDraw.text(2, -2, "Area: "+df.format(area));
 		return Math.abs(area);  //returns the absolute value of the area.
 	}
 
