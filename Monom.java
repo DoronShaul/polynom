@@ -23,49 +23,69 @@ public class Monom implements function{
 	 * not OK strings:{"x^-2","xx", "34^3", "5x^", "^0", "0x^^4", "5x7"}
 	 * @param s: the input string.
 	 */
+	
+	
 	public Monom(String s) {
 		s.toLowerCase();            //changes X --> x.
+		double coe=0;
+		int pow=0;
+		int xLocation=s.indexOf("x");
 		boolean pow_OK=true;        //indicates positive natural power.
-		int j=s.indexOf("^");
-		if(j==-1) {                 //if there is no "^" then the power value is one.
-			this.set_power(1);
+		int k=s.indexOf("*");
+		if(k==0) {                  //if the first char is "*".
+			try {
+				throw new Exception("illegeal expression");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		else {       //if there is "^" in the string.
-			int pow=Integer.parseInt(s.substring(j+1, s.length()));        //calculate the value after the "^".
-			if(pow<0) {		     
-				System.err.println();
+		if(k==-1) {                             //if there is no "*".
+			if(xLocation==-1) {                 //if there is no "x".
+				coe=Double.parseDouble(s);
+				this.set_coefficient(coe);
+				this.set_power(0);
+				return;
+			}
+			else {                              //if there is "x".
+				if(xLocation!=0) {
+					String co=s.substring(0, xLocation);
+					coe=Double.parseDouble(co);
+					this.set_coefficient(coe);
+				}
+				else {
+					this.set_coefficient(1);
+				}
+			}
+		}
+		else if(xLocation==k+1) {             //if "x" is right after "*".
+			String co=s.substring(0, k);
+			coe=Double.parseDouble(co);
+			this.set_coefficient(coe);
+		}
+		
+		if(xLocation==s.length()-1) {             //if "x" is the last char.    
+			this.set_power(1);
+			return;
+		}
+		else {
+			int h=s.indexOf("^");            	
+			if(h==-1) {                      //if there is no "^".
 				try {
-					throw new Exception("Error: the power has to be a non-negative integer: "+pow);
+					throw new Exception("illegeal expression");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}				
+			}
+			else if(xLocation+1!=h){         //if the "^" sign is not right after "x".
+				try {
+					throw new Exception("illegeal expression");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				pow_OK=false; 
 			}
 			else {
+				pow=Integer.parseInt(s.substring(h+1, s.length()));
 				this.set_power(pow);
-			}
-		}
-		if(pow_OK)             //if the power is a non-negative integer.
-		{
-			int i=s.indexOf("x");
-			if(i==-1) {            //if the x is not found in the string.
-				this.set_coefficient(Double.parseDouble(s.substring(0, s.length())));
-				this.set_power(0);
-			}
-			else {         //if there is "x" in the string.
-				if(i==0) {        //if "x" is in the beginning of the string.
-					this.set_coefficient(1);
-				}
-				else {       //if the "x" is in the string, but not the first char.
-					double co=Double.parseDouble(s.substring(0, i));
-					if(co==0) {       //if the coefficient value is 0.
-						this.set_coefficient(0);
-						this.set_power(0);
-					}
-					else { 
-						this.set_coefficient(co);
-					}
-				}
 			}
 		}
 	}
@@ -114,6 +134,8 @@ public class Monom implements function{
 	 */
 	public Monom derivative() {
 		if(this.get_power()==0) {
+			this.set_coefficient(0);
+			this.set_power(0);
 			return this;
 		}
 		else {
