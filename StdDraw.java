@@ -1884,17 +1884,20 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     	StdDraw.setXscale(-2, 6);
     	StdDraw.setYscale(-9, 9);	
     	Font font = new Font("Arial", Font.BOLD, 20);
-    	Monom m=new Monom(0.2,4);
-    	Monom m1=new Monom(-1.5,3);
-    	Monom m2=new Monom(3,2);
-    	Monom m3=new Monom(-1,1);
-    	Monom m4=new Monom(-5,0);
+    	Monom m=new Monom(1,2);
+    	Monom m1=new Monom(-2,1);
+    	Monom m2=new Monom(-2,0);
+    	//Monom m=new Monom(0.2,4);
+    	//Monom m1=new Monom(-1.5,3);
+    	//Monom m2=new Monom(3,2);
+    	//Monom m3=new Monom(-1,1);
+    	//Monom m4=new Monom(-5,0);
     	Polynom_able p=new Polynom();
     	p.add(m);
     	p.add(m1);
     	p.add(m2);
-    	p.add(m3);
-    	p.add(m4);
+    	//p.add(m3);
+    	//p.add(m4);
     	
     	double x0=-2;
     	double x1=6;
