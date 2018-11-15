@@ -92,7 +92,7 @@ class PolynomTest {
 		Monom m3=new Monom(11,1);
 		Polynom p=new Polynom();
 		Polynom p1=new Polynom();
-		p.add(m);		
+		p.add(m);	 	
 		p.add(m1);
 		p1.add(m2);
 		p1.add(m3);
@@ -141,7 +141,17 @@ class PolynomTest {
 	
 	@Test
 	void testRoot() {
+		Monom m=new Monom(1,2);
+		Monom m1=new Monom(-2,0);
+		Polynom p1=new Polynom();
+		p1.add(m);		
+		p1.add(m1);
+		double ans=p1.root(-2, 0, 0.1);
+		Assert.assertEquals(-1.4375, ans, 0);
 		
+		double ans2=p1.root(0.5, 3, 0.1);
+		Assert.assertEquals(1.4375, ans2, 0);
+	
 	}
 
 	@Test

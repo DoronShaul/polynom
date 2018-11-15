@@ -96,12 +96,12 @@ public class polynomDraw {
 			start=end;        
 			end+=eps;
 		}
-		Font font1 = new Font("Arial", Font.BOLD, 25);
+		Font font1 = new Font("Arial", Font.BOLD, 27);
 		StdDraw.setFont(font1);
-        StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+        StdDraw.setPenColor(StdDraw.BOOK_RED);
     	DecimalFormat df = new DecimalFormat();
     	df.setMaximumFractionDigits(3);
-    	StdDraw.text(2, -2, "Area: "+df.format(area));
+    	StdDraw.text(4.8, -8, "[Area: "+df.format(area)+"]");
 		return Math.abs(area);  //returns the absolute value of the area.
 	}
 
@@ -150,8 +150,8 @@ public class polynomDraw {
 	public static void main(String[] args) {
     	
     	StdDraw.setCanvasSize(800,800);                           //setting the size of the screen to 800*800.
-    	StdDraw.setXscale(-2, 6);                                 //the range of x.
-    	StdDraw.setYscale(-9, 9);                                 //the range of y.
+    	StdDraw.setXscale(-2, 6);                                 //the range of x's in the graph.
+    	StdDraw.setYscale(-9, 9);                                 //the range of y's in the graph.
     	Font font = new Font("Arial", Font.BOLD, 20);
     	Monom m=new Monom(0.2,4);
     	Monom m1=new Monom(-1.5,3);
@@ -181,6 +181,9 @@ public class polynomDraw {
     	drawExtremePoints(p, x1, eps, x0);
     	DecimalFormat df = new DecimalFormat();
     	df.format(calculateArea(p, x0, eps, x1));     //calculate the area of the function below axis-x.
+		
+		
+		
 	}
 
 }
